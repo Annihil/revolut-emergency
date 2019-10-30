@@ -104,6 +104,7 @@ export const rApi = axios.create({
     'x-device-id': mId,
     'user-agent': 'Revolut (iPhone)',
   },
+  // https://github.com/axios/axios/pull/2498
   // @ts-ignore
   checkServerIdentity: (host, cert: PeerCertificate) => {
     if (cert.fingerprint !== fingerprint) {
