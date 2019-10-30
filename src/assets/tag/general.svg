@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="vector" xmlns="http://www.w3.org/2000/svg" x="0px"
+     y="0px"
+     viewBox="0 0 40 40" style="enable-background:new 0 0 40 40;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#6A8CAD;fill-opacity:0.1;}
+	.st2{fill:none;}
+	.st3{fill:#6A8CAD;}
+</style>
+    <path id="path" class="st0" d="M20,40c11.046,0,20-8.954,20-20S31.046,0,20,0S0,8.954,0,20S8.954,40,20,40z"/>
+    <path id="path_5" class="st1" d="M20,40c11.046,0,20-8.954,20-20S31.046,0,20,0S0,8.954,0,20S8.954,40,20,40z"/>
+    <g id="group_1" transform="translate(8 8)">
+	<path id="path_6" class="st2" d="M0,0h24v24H0V0z"/>
+        <path class="st3" d="M20,11h-8H4c-0.552,0-1,0.448-1,1s0.448,1,1,1h8h8c0.552,0,1-0.448,1-1S20.552,11,20,11z"/>
+</g>
+</svg>
