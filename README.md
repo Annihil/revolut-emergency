@@ -32,7 +32,7 @@ in case of emergency such as loss of phone.
 # Troubleshooting
 * I did not receive an SMS verification code?  
   The first time you log in with the desktop app, since it is a new device, the verification code will be sent via email, you can find it [this way](https://github.com/Annihil/revolut-emergency/wiki/How-to-login-with-email)
-* I cannot open the app on macOS (unidentified developer)
+* I cannot open the app on macOS (unidentified developer)  
   Instead of double clicking on the R Emergency.app, right click → Open
   If that is still not enough, you will have to go to System Preferences → Security & Privacy → Click Open anyway
 
