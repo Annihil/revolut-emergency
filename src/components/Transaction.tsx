@@ -24,7 +24,7 @@ import pending from "../assets/transfer_pending.svg";
 import transferIn from "../assets/transfer_in.svg";
 import transferOut from "../assets/transfer_out.svg";
 import transferRecurring from "../assets/transfer_recurring.svg";
-import vaultCashbash from "../assets/vault_cashback_circle.svg";
+import vaultCashback from "../assets/vault_cashback_circle.svg";
 import { Spacer } from "./Spacer";
 import { ITransaction, loadUserImage } from "../api";
 import { useDelay } from "../hooks/useDelay";
@@ -167,7 +167,7 @@ const Transaction = ({ merchant, description, amount, currency, counterpart, typ
           {!merchant && !isUser(recipient, sender) && !cashbackBoxId &&
 					<Logo src={tag !== 'general' ? tags[tag] : types[type]} />}
           {isUser(recipient, sender) && <UserLogo user={sender || recipient} />}
-          {cashbackBoxId && <Logo src={vaultCashbash} />}
+          {cashbackBoxId && <Logo src={vaultCashback} />}
 				</>}
         {state === 'PENDING' && <State src={pending} />}
         {state === 'COMPLETED' && type === 'TRANSFER' && amount > 0 && <State src={transferIn} />}

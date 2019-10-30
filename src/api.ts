@@ -88,7 +88,7 @@ export const routes = {
   verificationCodeCall: '/verification-code/call',
   logout: '/signout',
   wallet: '/user/current/wallet',
-  quote: `/quote`,
+  quote: '/quote',
   transactionsLast: '/user/current/transactions/last',
   transactionsLastTo: (to: number) => `/user/current/transactions/last?to=${to}`,
   myCards: '/my-card/all',
@@ -116,16 +116,23 @@ export const rApi = axios.create({
   adapter: window.require('axios/lib/adapters/http')
 });
 
-export const loadUserImage = async (senderId: string) => {
+const imageCache = {} as { [key: string]: string };
+export const loadUserImage = async (userId: string) => {
+  if (userId in imageCache) {
+    return imageCache[userId];
+  }
+
   let res;
   try {
-    res = await rApi(`/user/${senderId}/picture`, { responseType: 'arraybuffer' });
+    res = await rApi(`/user/${userId}/picture`, { responseType: 'arraybuffer' });
   } catch (err) {
     return undefined;
   }
 
-  let image = Buffer.from(res.data, 'binary').toString('base64');
-  return `data:${res.headers['content-type'].toLowerCase()};base64,${image}`;
+  const image = Buffer.from(res.data, 'binary').toString('base64');
+  const src = `data:${res.headers['content-type'].toLowerCase()};base64,${image}`;
+  imageCache[userId] = src;
+  return src;
 };
 
 rApi.interceptors.response.use(r => r, error => {
