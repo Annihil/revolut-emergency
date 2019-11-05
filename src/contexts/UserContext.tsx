@@ -29,14 +29,14 @@ interface IStoreUserContext {
   loadWallet: () => void
   loadTotalBalance: () => void
   totalBalance: number
-  loadTransactions: () => void
+  loadLastTransactions: () => void
   loadAllTransactions: () => void
   unified: boolean
   setUnified: (unified: boolean) => void
   loadCards: () => void
 }
 
-export const UserContext = React.createContext<IStoreUserContext>({} as any);
+export const UserContext = React.createContext<IStoreUserContext>({} as IStoreUserContext);
 
 export const UserContextProvider = (props: { children: ReactNode }) => {
   const initialScreen = localStorage.getItem('screen');
@@ -117,50 +117,54 @@ export const UserContextProvider = (props: { children: ReactNode }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wallet]);
 
-  const loadTransactions = useCallback(async () => {
-    let res;
+  const loadLastTransactions = useCallback(async () => {
+    let res = null as { data: ITransaction[] } | null;
     try {
-      res = await rApi(routes.transactionsLast);
+      res = await rApi(routes.transactionsLast) as { data: ITransaction[] } | null;
     } catch (e) {
       return console.error(e);
     }
 
-    console.log({ lastTransactions: res.data });
-    const transactionToAdd = [] as ITransaction[];
-    for (const transaction of res.data as ITransaction[]) {
-      if (!transactions.find(t => t.id === transaction.id)) {
-        transactionToAdd.push(transaction);
-        if (transaction.account.type === 'CURRENT') {
-          const { amount, currency, description, merchant } = transaction;
-          console.log({ transaction });
-          new Notification(merchant ? merchant.name : description, {
-            body: `${sign(amount)}${getSymbolFromCurrency(currency)}${Math.abs(amount) / 100}`
-          })
+    console.log({ lastTransactions: res!.data });
+    setTransactions(prevTransactions => {
+      const transactionToAdd = [] as ITransaction[];
+      for (const transaction of res!.data) {
+        if (!prevTransactions.find(t => t.id === transaction.id)) {
+          transactionToAdd.push(transaction);
+          if (transaction.account.type === 'CURRENT') {
+            const { amount, currency, description, merchant } = transaction;
+            console.log({ transaction });
+            new Notification(merchant ? merchant.name : description, {
+              body: `${sign(amount)}${getSymbolFromCurrency(currency)}${Math.abs(amount) / 100}`
+            })
+          }
         }
       }
-    }
-    if (transactionToAdd.length > 0) {
-      await loadWallet();
-    }
-    setTransactions([...transactionToAdd, ...transactions]);
+      if (transactionToAdd.length > 0) {
+        loadWallet();
+      }
+      return [...transactionToAdd, ...prevTransactions]
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [setTransactions, transactions]);
+  }, [setTransactions]);
 
   const loadAllTransactions = useCallback(async () => {
-    let tmpTransactions = [] as ITransaction[];
-
     try {
-      let res;
+      let res = null as { data: ITransaction[] } | null;
       let next = +moment();
       do {
-        res = await rApi(routes.transactionsLastTo(next));
-        console.log({ to: next, transactions: res.data });
-        if (res.data.length) {
-          next = res.data[res.data.length - 1].startedDate;
+        try {
+          res = (await rApi(routes.transactionsLastTo(next))) as { data: ITransaction[] } | null;
+          console.log({ to: next, transactions: res!.data });
+          if (res!.data.length) {
+            next = res!.data[res!.data.length - 1].startedDate;
+          }
+          // eslint-disable-next-line no-loop-func
+          setTransactions(prevTransactions => [...prevTransactions, ...res!.data]);
+        } catch (e) {
+          console.warn(e)
         }
-        tmpTransactions = [...tmpTransactions, ...res.data];
-        setTransactions(tmpTransactions);
-      } while (res.data.length);
+      } while (res && res.data.length);
     } catch (e) {
       return console.error(e);
     }
@@ -188,7 +192,7 @@ export const UserContextProvider = (props: { children: ReactNode }) => {
       setLoading,
       cards,
       setCards,
-      loadTransactions,
+      loadLastTransactions,
       loadAllTransactions,
       verificationOptions,
       setVerificationOptions,

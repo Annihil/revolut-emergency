@@ -56,16 +56,16 @@ export const Cards = () => {
   const { cards, setCards, loadCards } = useContext(UserContext);
 
   const blockCard = useCallback(async (card) => {
-    let res = null as any;
+    let res = null as { data: ICard } | null;
     try {
-      res = await rApi.post(routes.myCardBlock(card.id));
+      res = await rApi.post(routes.myCardBlock(card.id)) as { data: ICard } | null;
     } catch (e) {
       return console.error(e);
     }
 
-    console.log({ blockCard: res.data });
+    console.log({ blockCard: res!.data });
 
-    setCards(cards.map(c => c.id === card.id ? res.data as ICard : c));
+    setCards(cards.map(c => c.id === card.id ? res!.data : c));
   }, [cards, setCards]);
 
   useEffect(() => {

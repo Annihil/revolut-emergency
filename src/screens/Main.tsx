@@ -25,10 +25,10 @@ const Placeholder = styled.div`
 `;
 
 const Screen = () => {
-  const { screen, loadTransactions } = useContext(UserContext);
+  const { screen, loadLastTransactions } = useContext(UserContext);
 
   useInterval(() => {
-    loadTransactions();
+    loadLastTransactions();
   }, 60000);
 
   if (screen === 'main/transactions')
@@ -41,7 +41,7 @@ const Screen = () => {
 };
 
 export const Main = () => {
-  const { wallet, cards, transactions, loadWallet, loadCards, loadAllTransactions, loadTransactions, loadTotalBalance } = useContext(UserContext);
+  const { wallet, cards, transactions, loadWallet, loadCards, loadAllTransactions, loadLastTransactions, loadTotalBalance } = useContext(UserContext);
 
   useEffect(() => {
     loadWallet();
@@ -55,7 +55,7 @@ export const Main = () => {
     if (!transactions.length) {
       loadAllTransactions();
     } else {
-      loadTransactions();
+      loadLastTransactions();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wallet]);
