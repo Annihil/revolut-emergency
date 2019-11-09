@@ -53,6 +53,7 @@ export const Login = () => {
           setPhoneInvalid(true);
           setPasswordInvalid(true);
         }
+        return console.error(e.response);
       }
       return console.error(e);
     }

@@ -62,13 +62,12 @@ export const Main = () => {
 
   if (!wallet || !cards.length || !transactions.length) {
     return <Container>
-      {/*
-      // @ts-ignore */}
       <Lottie
         options={{
           animationData: business,
           rendererSettings: { preserveAspectRatio: 'xMidYMid slice' }
         }}
+        // @ts-ignore
         style={{ margin: 'auto' }}
         height={600}
         width={600} />

@@ -55,7 +55,7 @@ export const Navbar = () => {
     }
 
     localStorage.clear();
-    setScreen('login');
+    window.location.reload();
   };
 
   return <Container>

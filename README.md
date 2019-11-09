@@ -1,4 +1,3 @@
-# R Emergency
 <p align="center">
 	<img src="https://i.imgur.com/JI4rDZa.png" height="150" width="150" />
 </p>
@@ -17,8 +16,8 @@ in case of emergency such as loss of phone.
 
 ![](https://i.imgur.com/qXSd89I.gif)
 
-[Download for macOS](https://github.com/Annihil/revolut-emergency/releases/latest/download/R.Emergency.dmg) •
-[Download for Windows](https://github.com/Annihil/revolut-emergency/releases/latest/download/R.Emergency.Setup.exe) •
+[Download for macOS](https://github.com/Annihil/revolut-emergency/releases/latest/download/r-emergency.dmg) •
+[Download for Windows](https://github.com/Annihil/revolut-emergency/releases/latest/download/r-emergency.exe) •
 [Download for Linux](https://github.com/Annihil/revolut-emergency/releases/latest/download/r-emergency_amd64.snap)
 
 # Install from source

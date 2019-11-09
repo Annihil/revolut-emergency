@@ -1,6 +1,5 @@
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
-const isDev = require("electron-is-dev");
 let mainWindow;
 
 function createWindow() {
@@ -9,13 +8,13 @@ function createWindow() {
 		height: 800,
 		frame: false,
 		webPreferences: {
-			devTools: isDev,
+			devTools: !!process.env.DEV,
 			nodeIntegration: true,
 			enableBlinkFeatures: 'DisplayLocking,BuiltInModuleAll'
 		}
 	});
 	mainWindow.loadURL(
-		isDev
+		!!process.env.DEV
 			? "http://localhost:3000"
 			: `file://${path.join(__dirname, "../build/index.html")}`
 	);
