@@ -18,13 +18,13 @@ import exchange from "../assets/type/exchange.svg";
 import refund from "../assets/type/refund.svg";
 import reward from "../assets/type/reward.svg";
 import topup from "../assets/type/topup.svg";
-import declined from "../assets/declined.svg";
-import bank from "../assets/bank.svg";
-import pending from "../assets/transfer_pending.svg";
-import transferIn from "../assets/transfer_in.svg";
-import transferOut from "../assets/transfer_out.svg";
-import transferRecurring from "../assets/transfer_recurring.svg";
-import vaultCashback from "../assets/vault_cashback_circle.svg";
+import declined from "../assets/transaction/declined.svg";
+import bank from "../assets/transaction/bank.svg";
+import pending from "../assets/transaction/transfer_pending.svg";
+import transferIn from "../assets/transaction/transfer_in.svg";
+import transferOut from "../assets/transaction/transfer_out.svg";
+import transferRecurring from "../assets/transaction/transfer_recurring.svg";
+import vaultCashback from "../assets/transaction/vault_cashback_circle.svg";
 import { Spacer } from "./Spacer";
 import { ITransaction, loadUserImage } from "../api";
 import { useDelay } from "../hooks/useDelay";
@@ -70,10 +70,22 @@ const LogoContainer = styled.div`
 	display: inline-flex;
 `;
 
-const Logo = styled.img`
+const Logo = styled.img<{ fallback?: string }>`
 	width: 2.5rem;
 	height: 2.5rem;
 	border-radius: 50%;
+	overflow: hidden;
+	position: relative;
+	
+  :before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background-image: url(${props => props.fallback});
+  }
 `;
 
 const LogoLetters = styled.div`
@@ -163,7 +175,7 @@ const Transaction = ({ merchant, description, amount, currency, counterpart, typ
       <LogoContainer>
         {state.match(/REVERTED|DECLINED|FAILED/) && <Logo src={declined} />}
         {!state.match(/REVERTED|DECLINED|FAILED/) && <>
-          {merchant && <Logo src={merchant.logo || tags[tag]} onError={() => merchant.logo = tags[tag]} />}
+          {merchant && <Logo src={merchant.logo || tags[tag]} fallback={tags[tag]} />}
           {!merchant && !isUser(recipient, sender) && !cashbackBoxId &&
 					<Logo src={tag !== 'general' ? tags[tag] : types[type]} />}
           {isUser(recipient, sender) && <UserLogo user={sender || recipient} />}

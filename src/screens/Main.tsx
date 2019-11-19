@@ -7,6 +7,7 @@ import { Cards } from "./Cards";
 import useInterval from "react-useinterval";
 import Lottie from "react-lottie";
 import business from "../assets/lottie/business.json";
+import { Chats } from "./Chats";
 
 const Container = styled.div`
 	display: flex;
@@ -25,11 +26,15 @@ const Placeholder = styled.div`
 `;
 
 const Screen = () => {
-  const { screen, loadLastTransactions } = useContext(UserContext);
+  const { screen, loadLastTransactions, loadUnreadChat } = useContext(UserContext);
 
   useInterval(() => {
     loadLastTransactions();
   }, 60000);
+
+  useInterval(() => {
+    loadUnreadChat();
+  }, 10000);
 
   if (screen === 'main/transactions')
     return <Transactions />;
@@ -37,15 +42,24 @@ const Screen = () => {
   if (screen === 'main/cards')
     return <Cards />;
 
+  if (screen === 'main/chats')
+    return <Chats />;
+
   return <Placeholder>Screen not found</Placeholder>
 };
 
 export const Main = () => {
-  const { wallet, cards, transactions, loadWallet, loadCards, loadAllTransactions, loadLastTransactions, loadTotalBalance } = useContext(UserContext);
+  const { wallet, cards, transactions, loadWallet, loadCards, loadAllTransactions, loadLastTransactions, loadTotalBalance, connectChat, loadChatHistory } = useContext(UserContext);
 
   useEffect(() => {
-    loadWallet();
-    loadCards();
+    async function go() {
+      loadWallet();
+      loadCards();
+      await connectChat();
+      loadChatHistory();
+    }
+
+    go()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

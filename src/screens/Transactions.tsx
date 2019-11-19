@@ -3,8 +3,8 @@ import { UserContext } from "../contexts/UserContext";
 import styled, { css } from 'styled-components';
 import { TransactionDelayed } from "../components/Transaction";
 import getSymbolFromCurrency from 'currency-symbol-map'
-import threeColumnsLayoutBlue from '../assets/three_columns_layout_blue.svg';
-import threeColumnsLayoutGrey from '../assets/three_columns_layout_grey.svg';
+import threeColumnsLayoutBlue from '../assets/nav/three_columns_layout_blue.svg';
+import threeColumnsLayoutGrey from '../assets/nav/three_columns_layout_grey.svg';
 import { amountFmt } from "../util";
 
 const PocketScroller = css`
@@ -69,7 +69,7 @@ export const Transactions = () => {
       onClick={() => setUnified(!unified)}
     />
     {!unified && pockets.map(p => {
-      const transactionsOfPocket = transactions.filter(t => t.account && t.account.id === p.id);
+      const transactionsOfPocket = transactions.filter(t => t.account?.id === p.id);
       return <Pocket key={p.id}>
         <Balance>{getSymbolFromCurrency(p.currency)}{amountFmt(p.balance)}</Balance>
         <virtual-scroller class='pocket-scroller'>
@@ -80,7 +80,7 @@ export const Transactions = () => {
     {unified && <Pocket large>
 			<Balance>{getSymbolFromCurrency(wallet.baseCurrency)}{amountFmt(totalBalance)}</Balance>
 			<virtual-scroller class='pocket-scroller'>
-        {transactions.filter(t => t.account && t.account.type === 'CURRENT').map((t, i) =>
+        {transactions.filter(t => t.account?.type === 'CURRENT').map((t, i) =>
           <TransactionDelayed i={i} {...t} key={t.legId} />)}
 			</virtual-scroller>
 		</Pocket>}

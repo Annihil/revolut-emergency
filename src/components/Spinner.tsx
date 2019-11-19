@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 
-import spinnerImg from '../assets/spinner.png';
+import spinnerImg from '../assets/nav/spinner.png';
 import { UserContext } from "../contexts/UserContext";
 
-export const Spinner = () => (
-  <StyledSpinner src={spinnerImg} />
+export const Spinner = ({ className }: { className?: string }) => (
+  <StyledSpinner src={spinnerImg} className={className} />
 );
 
 const StyledSpinner = styled.img`

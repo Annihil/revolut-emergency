@@ -1,9 +1,9 @@
 import React from 'react';
 
 import styled, { css } from "styled-components";
-import visaLogo from "../assets/visa.png";
-import mcLogo from "../assets/mc_white.svg";
-import rLogo from "../assets/r_logo.svg";
+import visaLogo from "../assets/card/visa.png";
+import mcLogo from "../assets/card/mc_white.svg";
+import rLogo from "../assets/card/r_logo.svg";
 import { ICard } from "../api";
 
 const ratio = 4;

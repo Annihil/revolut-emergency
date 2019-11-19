@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect } from 'react'
 import { ICard, rApi, routes } from "../api";
 import { UserContext } from "../contexts/UserContext";
 import styled from 'styled-components';
-import snowflake from '../assets/snowflake.svg';
+import snowflake from '../assets/card/snowflake.svg';
 import { Card } from "../components/Card";
 
 
@@ -60,7 +60,7 @@ export const Cards = () => {
     try {
       res = await rApi.post(routes.myCardBlock(card.id)) as { data: ICard } | null;
     } catch (e) {
-      return console.error(e);
+      return console.error(e.response);
     }
 
     console.log({ blockCard: res!.data });

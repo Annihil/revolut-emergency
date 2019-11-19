@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { createGlobalStyle } from 'styled-components';
-import RobotoRegular from './assets/roboto_regular.ttf';
-import RobotoMediumFont from './assets/roboto_medium.ttf';
-import RobotoMonoMediumFont from './assets/roboto_mono_medium.ttf';
-import Ocra10 from './assets/ocra10.ttf';
+import RobotoRegular from './assets/fonts/roboto_regular.ttf';
+import RobotoMediumFont from './assets/fonts/roboto_medium.ttf';
+import RobotoMonoMediumFont from './assets/fonts/roboto_mono_medium.ttf';
+import Ocra10 from './assets/fonts/ocra10.ttf';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {

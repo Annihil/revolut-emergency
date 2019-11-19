@@ -76,9 +76,106 @@ export interface IVerificationOption {
   value: string
 }
 
-export interface IUser {
-
+export interface IAgent {
+  id: string
+  name: string
+  avatar: string
 }
+
+export interface IChatHistory {
+  assigned: string
+  bot: boolean
+  createdAt: string
+  id: string
+  language: string
+  lastMessage: {
+    author: {
+      id: string
+      name: string
+    }
+    createdAt: string
+    fromClient: false
+    id: string
+    payload: {
+      text?: string
+      type: 'text'
+    }
+  } | undefined
+  payloadType: 'message'
+  readOnly: boolean
+  state: 'ClosedAndRated'
+  unread: number
+  updatedAt: string
+}
+
+export interface PayloadText {
+  type: 'text'
+  text: string
+}
+
+export interface PayloadUpload {
+  type: 'upload'
+  mediaType: 'image/jpeg' | 'application/pdf' | 'image/png'
+  uploadId: string
+}
+
+interface PayloadRated {
+  type: 'rated'
+  rating: number
+}
+
+interface PayloadAssigned {
+  type: 'assigned'
+  assigned: {
+    agentId: string
+    agentName: string
+  }
+  assignedBy: string
+  inboxId: string
+}
+
+interface PayloadInitialized {
+  type: 'initialized'
+  inboxId: string
+  initializedBy: string
+}
+
+interface PayloadClosed {
+  type: 'closed'
+  closedBy: string
+}
+
+interface PayloadEscalated {
+  type: 'escalated'
+  agentId: string
+  inboxId: string
+  queue: string
+  routeId: string
+}
+
+interface PayloadResolved {
+  type: 'resolved'
+  agentId: string
+}
+
+export interface IMessage {
+  id: string,
+  messageId: string,
+  createdAt: string,
+  updatedAt: string,
+  ticketId: string,
+  fromClient: false,
+  authorId: string,
+  author: {
+    id: string,
+    name: string
+  },
+  payload: PayloadText | PayloadUpload | PayloadRated | PayloadAssigned | PayloadInitialized | PayloadClosed | PayloadEscalated | PayloadResolved
+  payloadType: 'message' | 'service',
+  clientMessageId?: string,
+  correlationId?: string
+}
+
 
 export const routes = {
   login: '/signin',
@@ -92,16 +189,36 @@ export const routes = {
   transactionsLast: '/user/current/transactions/last',
   transactionsLastTo: (to: number) => `/user/current/transactions/last?to=${to}`,
   myCards: '/my-card/all',
-  myCardBlock: (cardId: string) => `/my-card/${cardId}/block`,
+  myCardBlock: (cardId: string) => `/my-card/${cardId}/block`
 };
+
+export const chatRoutes = {
+  connect: '/api/client/signin/revolut',
+  history: '/api/client/tickets/history',
+  agentInfo: (agentId: string) => `/api/client/agents/${agentId}/info`,
+  agentAvatar: (agentId: string) => `/api/client/agents/${agentId}/avatar`,
+  ticket: '/api/client/tickets',
+  ticketMessage: (ticketId: string) => `/api/client/tickets/${ticketId}/messages/history`,
+  ticketRate: (ticketId: string) => `/api/client/tickets/${ticketId}/rate`,
+  ticketText: (ticketId: string) => `/api/client/tickets/${ticketId}/messages/text`,
+  ticketUpload: (ticketId: string) => `/api/client/tickets/${ticketId}/messages/upload`,
+  ticketRead: (ticketId: string) => `/api/client/tickets/${ticketId}/messages/read`,
+  summary: '/api/client/tickets/summary',
+  uploads: (uploadId: string) => `/api/client/uploads/${uploadId}`
+};
+
+const headers = {
+  'x-client-version': '6.11',
+  'x-device-id': mId,
+};
+const adapter = window.require('axios/lib/adapters/http');
 
 const fingerprint = '72:D6:89:C7:C6:DF:4B:A8:D7:D6:22:50:83:4D:20:02:BB:0E:61:6E';
 export const rApi = axios.create({
   baseURL: 'https://api.revolut.com',
   headers: {
-    'x-client-version': '6.11',
+    ...headers,
     'x-api-version': '1',
-    'x-device-id': mId,
     'user-agent': 'Revolut (iPhone)',
   },
   // https://github.com/axios/axios/pull/2498
@@ -114,7 +231,17 @@ export const rApi = axios.create({
       return new Error(msg);
     }
   },
-  adapter: window.require('axios/lib/adapters/http')
+  adapter
+});
+
+export const chatApi = axios.create({
+  baseURL: 'https://chat.revolut.com',
+  headers: {
+    ...headers,
+    'x-chat-version': '3.0',
+    'user-agent': 'Chat/3.0',
+  },
+  adapter
 });
 
 const imageCache = {} as { [key: string]: string };

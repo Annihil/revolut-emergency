@@ -1,7 +1,7 @@
 {
   "name": "r-emergency",
   "homepage": "https://github.com/Annihil/revolut-emergency",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "main": "public/electron.js",
   "license": "MIT",
   "author": "Annihil",
@@ -20,10 +20,12 @@
     "react": "^16",
     "react-dom": "^16",
     "react-lottie": "^1",
-    "react-scripts": "^3",
+    "react-scripts": "^3.3.0-next.62",
     "react-useinterval": "^1",
     "styled-components": "^4",
-    "typescript": "^3"
+    "typescript": "^3",
+    "he": "^1",
+    "form-data": "^3"
   },
   "devDependencies": {
     "@types/node": "^12",
@@ -32,6 +34,7 @@
     "@types/react-dom": "^16",
     "@types/react-lottie": "^1",
     "@types/styled-components": "^4",
+    "@types/he": "^1",
     "concurrently": "^5",
     "electron": "^7",
     "wait-on": "^3"

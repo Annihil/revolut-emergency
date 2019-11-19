@@ -7,6 +7,7 @@ This small app let you
 - Freeze your cards
 - See your pockets' balance
 - Get system notifications of new transactions
+- Contact customer support
 
 in case of emergency such as loss of phone.
 
@@ -15,6 +16,7 @@ in case of emergency such as loss of phone.
 </p>
 
 ![](https://i.imgur.com/qXSd89I.gif)
+![](https://i.imgur.com/4hIN55M.png)
 
 [Download for macOS](https://github.com/Annihil/revolut-emergency/releases/latest/download/r-emergency.dmg) •
 [Download for Windows](https://github.com/Annihil/revolut-emergency/releases/latest/download/r-emergency.exe) •

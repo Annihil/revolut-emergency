@@ -67,7 +67,7 @@ const loginChannelMap = {
 
 export const Confirm = () => {
   const [code, setCode] = useState('');
-  const { setScreen, phone, setUser, setWallet, setAccessToken, setLoading, loginChannel, verificationOptions } = useContext(UserContext);
+  const { setScreen, phone, setWallet, setLoading, loginChannel, verificationOptions } = useContext(UserContext);
   const [error, setError] = useState(null as null | string);
   const [codeInvalid, setCodeInvalid] = useState(false);
 
@@ -85,14 +85,12 @@ export const Confirm = () => {
           setCodeInvalid(true);
         }
       }
-      return console.error(e);
+      return console.error(e.response);
     }
     setError(null);
     setLoading(false);
 
     console.log({ loginConfirmResult: res.data });
-    setUser(res.data.user);
-    setAccessToken(res.data.accessToken);
     setWallet(res.data.wallet);
     rApi.defaults.auth = {
       username: res.data.user.id,

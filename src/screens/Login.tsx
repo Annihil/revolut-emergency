@@ -55,7 +55,7 @@ export const Login = () => {
         }
         return console.error(e.response);
       }
-      return console.error(e);
+      return console.error(e.response);
     }
     setError(null);
     setLoading(false);
