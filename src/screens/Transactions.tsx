@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { UserContext } from "../contexts/UserContext";
+import { TransactionContext } from "../contexts/TransactionContext";
 import styled, { css } from 'styled-components';
 import { TransactionDelayed } from "../components/Transaction";
 import getSymbolFromCurrency from 'currency-symbol-map'
@@ -57,7 +57,7 @@ const UnifyButton = styled.img`
 
 
 export const Transactions = () => {
-  const { wallet, transactions, totalBalance, unified, setUnified } = useContext(UserContext);
+  const { wallet, transactions, totalBalance, unified, setUnified } = useContext(TransactionContext);
 
   if (!wallet || !transactions.length) return null;
 

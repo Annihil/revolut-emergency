@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { rApi, routes } from "../api";
-import { UserContext } from "../contexts/UserContext";
 import styled from "styled-components";
 import { FloatingInput } from "../components/FloatingInput";
 import { Spacer } from "../components/Spacer";
@@ -8,6 +7,8 @@ import { PinkButton } from "../components/PinkButton";
 import Lottie from "react-lottie";
 import loungeOnPc from "../assets/lottie/lounge_on_pc.json";
 import { BackButton } from "../components/BackButton";
+import { GuestContext } from "../contexts/GuestContext";
+import { NavContext } from "../contexts/NavContext";
 
 const shell = window.require('electron').shell;
 
@@ -67,7 +68,8 @@ const loginChannelMap = {
 
 export const Confirm = () => {
   const [code, setCode] = useState('');
-  const { setScreen, phone, setWallet, setLoading, loginChannel, verificationOptions } = useContext(UserContext);
+  const { setScreen, setLoading } = useContext(NavContext);
+  const { phone, loginChannel, verificationOptions } = useContext(GuestContext);
   const [error, setError] = useState(null as null | string);
   const [codeInvalid, setCodeInvalid] = useState(false);
 
@@ -91,7 +93,6 @@ export const Confirm = () => {
     setLoading(false);
 
     console.log({ loginConfirmResult: res.data });
-    setWallet(res.data.wallet);
     rApi.defaults.auth = {
       username: res.data.user.id,
       password: res.data.accessToken

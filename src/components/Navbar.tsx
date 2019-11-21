@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { UserContext } from "../contexts/UserContext";
 import styled, { css } from 'styled-components';
 
 import card from '../assets/nav/card_grey.svg';
@@ -10,6 +9,8 @@ import walletBlue from '../assets/nav/wallet_blue.svg';
 import chatBlue from '../assets/nav/chat_blue.svg';
 import logoutIcon from '../assets/nav/logout.svg';
 import { rApi, routes } from "../api";
+import { ChatContext } from "../contexts/ChatContext";
+import { NavContext } from "../contexts/NavContext";
 
 const Container = styled.div`
 	display: flex;
@@ -61,7 +62,8 @@ const items = [
 ];
 
 export const Navbar = () => {
-  const { screen, setScreen, unread } = useContext(UserContext);
+  const { screen, setScreen } = useContext(NavContext);
+  const { unread } = useContext(ChatContext);
 
   const logout = async () => {
     try {

@@ -1,9 +1,9 @@
 import React, { useCallback, useContext, useEffect } from 'react'
 import { ICard, rApi, routes } from "../api";
-import { UserContext } from "../contexts/UserContext";
 import styled from 'styled-components';
 import snowflake from '../assets/card/snowflake.svg';
 import { Card } from "../components/Card";
+import { CardContext } from "../contexts/CardContext";
 
 
 const Container = styled.div`
@@ -53,7 +53,7 @@ const Subtitle = styled.div`
 `;
 
 export const Cards = () => {
-  const { cards, setCards, loadCards } = useContext(UserContext);
+  const { cards, setCards, loadCards } = useContext(CardContext);
 
   const blockCard = useCallback(async (card) => {
     let res = null as { data: ICard } | null;

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { UserContext } from "../contexts/UserContext";
+import { TransactionContext } from "../contexts/TransactionContext";
 import styled from 'styled-components';
 import { Navbar } from "../components/Navbar";
 import { Transactions } from "./Transactions";
@@ -8,6 +8,9 @@ import useInterval from "react-useinterval";
 import Lottie from "react-lottie";
 import business from "../assets/lottie/business.json";
 import { Chats } from "./Chats";
+import { NavContext } from "../contexts/NavContext";
+import { CardContext } from "../contexts/CardContext";
+import { ChatContext } from "../contexts/ChatContext";
 
 const Container = styled.div`
 	display: flex;
@@ -26,7 +29,9 @@ const Placeholder = styled.div`
 `;
 
 const Screen = () => {
-  const { screen, loadLastTransactions, loadUnreadChat } = useContext(UserContext);
+  const { screen } = useContext(NavContext);
+  const { loadLastTransactions } = useContext(TransactionContext);
+  const { loadUnreadChat } = useContext(ChatContext);
 
   useInterval(() => {
     loadLastTransactions();
@@ -49,7 +54,9 @@ const Screen = () => {
 };
 
 export const Main = () => {
-  const { wallet, cards, transactions, loadWallet, loadCards, loadAllTransactions, loadLastTransactions, loadTotalBalance, connectChat, loadChatHistory } = useContext(UserContext);
+  const { wallet, transactions, loadWallet, loadAllTransactions, loadLastTransactions, loadTotalBalance } = useContext(TransactionContext);
+  const { cards, loadCards, } = useContext(CardContext);
+  const { connectChat, loadChatHistory } = useContext(ChatContext);
 
   useEffect(() => {
     async function go() {

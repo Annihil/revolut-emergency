@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 import { PayloadUpload } from "../api";
 import React, { useContext, useEffect } from "react";
-import { UserContext } from "../contexts/UserContext";
 import pdf from '../assets/chat/pdf.svg';
+import { ChatContext } from "../contexts/ChatContext";
 
 const { shell } = window.require('electron').remote;
 
@@ -22,7 +22,7 @@ const StyledUploadPdf = styled.img<{ fromClient: boolean }>`
 `;
 
 export const UploadPDF = ({ payload, fromClient }: { payload: PayloadUpload, fromClient: boolean }) => {
-  const { uploads, loadUpload } = useContext(UserContext);
+  const { uploads, loadUpload } = useContext(ChatContext);
   useEffect(() => {
     if (!uploads[payload.uploadId]) loadUpload(payload.uploadId);
     // eslint-disable-next-line

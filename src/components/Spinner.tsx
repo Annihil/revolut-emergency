@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 
 import spinnerImg from '../assets/nav/spinner.png';
-import { UserContext } from "../contexts/UserContext";
+import { NavContext } from "../contexts/NavContext";
 
 export const Spinner = ({ className }: { className?: string }) => (
   <StyledSpinner src={spinnerImg} className={className} />
@@ -33,7 +33,7 @@ const StyledOverlaySpinner = styled.div`
 `;
 
 export const OverlaySpinner = () => {
-  const { loading } = useContext(UserContext);
+  const { loading } = useContext(NavContext);
 
   if (!loading) return null;
 

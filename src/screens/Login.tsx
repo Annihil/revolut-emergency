@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { rApi, routes } from "../api";
-import { UserContext } from "../contexts/UserContext";
 import { PinkButton } from "../components/PinkButton";
 import { FloatingInput } from "../components/FloatingInput";
 import styled from "styled-components";
 import { Spacer } from "../components/Spacer";
 import Lottie from "react-lottie";
 import loungeYo from '../assets/lottie/lounge_yo.json'
+import { NavContext } from "../contexts/NavContext";
+import { GuestContext } from "../contexts/GuestContext";
 
 const Container = styled.div`
   display: flex;
@@ -30,7 +31,8 @@ const Error = styled.div`
 
 export const Login = () => {
   const [password, setPassword] = useState('');
-  const { setScreen, phone, setPhone, setLoading, setLoginChannel, setVerificationOptions } = useContext(UserContext);
+  const { setScreen, setLoading } = useContext(NavContext);
+  const { phone, setPhone, setLoginChannel, setVerificationOptions } = useContext(GuestContext);
   const [error, setError] = useState<String | null>(null);
   const [phoneInvalid, setPhoneInvalid] = useState(false);
   const [passwordInvalid, setPasswordInvalid] = useState(false);

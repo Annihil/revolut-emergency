@@ -1,5 +1,4 @@
 import React, { useCallback, useContext, useEffect } from 'react'
-import { UserContext } from "../contexts/UserContext";
 import styled from 'styled-components';
 import { ChatPreview } from "../components/ChatPreview";
 import { NewChat } from "../components/NewChat";
@@ -10,6 +9,7 @@ import { MessageItem } from "../components/MessageItem";
 import { UploadImage } from "../components/UploadImage";
 import { UploadPDF } from "../components/UploadPDF";
 import { ResolveRatingBox } from "../components/ResolveRatingBox";
+import { ChatContext } from "../contexts/ChatContext";
 
 const FormData = window.require('form-data');
 const fs = window.require('fs');
@@ -81,7 +81,7 @@ const UploadAttachmentBtn = styled.img`
 
 
 export const Chats = () => {
-  const { chatsHistory, messages, currentChat, setCurrentChat, loadMessages, openTicket, openTickets, text, setText, sendText, readChat, sendAttachment } = useContext(UserContext);
+  const { chatsHistory, messages, currentChat, setCurrentChat, loadMessages, openTicket, openTickets, text, setText, sendText, readChat, sendAttachment } = useContext(ChatContext);
 
   const chat = currentChat ? messages[currentChat] : null;
   const chatHistory = currentChat ? [...openTickets, ...chatsHistory].find(c => c.id === currentChat) : null;

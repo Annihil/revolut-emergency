@@ -2,7 +2,7 @@ import moment from "moment";
 import React, { useContext, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { IChatHistory } from "../api";
-import { UserContext } from "../contexts/UserContext";
+import { ChatContext } from "../contexts/ChatContext";
 
 const Container = styled.div<{ active: boolean }>`
 	display: flex;
@@ -89,7 +89,7 @@ interface Props {
 }
 
 export const ChatPreview = ({ active, onClick, chatHistory }: Props) => {
-  const { loadAgentInfo, loadAgentAvatar, agents } = useContext(UserContext);
+  const { loadAgentInfo, loadAgentAvatar, agents } = useContext(ChatContext);
   const agent = agents[chatHistory.assigned];
 
   useEffect(() => {

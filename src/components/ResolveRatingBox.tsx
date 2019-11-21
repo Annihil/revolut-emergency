@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import React, { useContext } from "react";
-import { UserContext } from "../contexts/UserContext";
 import starOutline from "../assets/chat/star_outline.svg";
 import starSolid from "../assets/chat/star_solid.svg";
+import { ChatContext } from "../contexts/ChatContext";
 
 const ResolveContainer = styled.div`
   background-color: #f3f4f5;
@@ -26,7 +26,7 @@ const Star = styled.img`
 `;
 
 export const ResolveRatingBox = () => {
-  const { rateTicket } = useContext(UserContext);
+  const { rateTicket } = useContext(ChatContext);
 
   return <ResolveContainer>
     {[5, 4, 3, 2, 1].map(e => <Star key={e} src={starOutline} onClick={() => rateTicket(e)} />)}

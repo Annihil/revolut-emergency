@@ -17,7 +17,7 @@ const Container = styled.div`
 	user-select: none;
 `;
 
-const StyledDiv = styled.div<{purple?: boolean}>`
+const StyledDiv = styled.div<{ purple?: boolean }>`
 	width: 12px;
 	height: 12px;
 	border-radius: 6px;
