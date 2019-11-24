@@ -27,7 +27,8 @@ const Item = styled.div<{ active?: boolean }>`
 	justify-content: center;
 	flex-flow: column;
 	padding: .25rem;
-	cursor: pointer;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
 	
 	${props => props.active && css`
 		cursor: default;

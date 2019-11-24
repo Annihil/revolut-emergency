@@ -27,6 +27,7 @@ const StyledDiv = styled.div<{ purple?: boolean }>`
 	align-items: center;
 	justify-content: center;
 	user-select: none;
+	-webkit-app-region: no-drag;
 	filter: grayscale(100%) brightness(125%);
 	animation: all .3s ease;
 	${window.process.platform === 'darwin' && css`background-color: #0075eb;`}
