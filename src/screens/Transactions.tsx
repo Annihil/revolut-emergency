@@ -3,8 +3,7 @@ import { TransactionContext } from "../contexts/TransactionContext";
 import styled, { css } from 'styled-components';
 import { TransactionDelayed } from "../components/Transaction";
 import getSymbolFromCurrency from 'currency-symbol-map'
-import threeColumnsLayoutBlue from '../assets/nav/three_columns_layout_blue.svg';
-import threeColumnsLayoutGrey from '../assets/nav/three_columns_layout_grey.svg';
+import threeColumnsLayout from '../assets/nav/three_columns_layout.svg';
 import { amountFmt } from "../util";
 
 const PocketScroller = css`
@@ -47,12 +46,17 @@ const Balance = styled.div`
 	margin: 1rem 0;
 `;
 
-const UnifyButton = styled.img`
-   position: absolute;
-   cursor: pointer;
-   right: 1rem;
-   top: 4rem;
-   width: 1.5rem;
+const UnifyButton = styled.img<{active: boolean}>`
+  position: absolute;
+  cursor: pointer;
+  right: 1rem;
+  top: 4rem;
+  width: 1.5rem;
+  transition: 200ms filter ease;
+  filter: invert(68%) sepia(17%) saturate(206%) hue-rotate(167deg) brightness(84%) contrast(85%);
+	${props => props.active && css`
+    filter: invert(37%) sepia(71%) saturate(5593%) hue-rotate(198deg) brightness(97%) contrast(101%);
+	`}
 `;
 
 
@@ -65,7 +69,8 @@ export const Transactions = () => {
 
   return <Container>
     <UnifyButton
-      src={unified ? threeColumnsLayoutBlue : threeColumnsLayoutGrey}
+      src={threeColumnsLayout}
+      active={unified}
       onClick={() => setUnified(!unified)}
     />
     {!unified && pockets.map(p => {

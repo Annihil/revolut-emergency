@@ -1,14 +1,11 @@
 {
   "name": "r-emergency",
   "homepage": "https://github.com/Annihil/revolut-emergency",
-  "version": "3.3.0",
+  "version": "3.3.2",
   "main": "public/electron.js",
   "license": "MIT",
   "author": "Annihil",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Annihil/revolut-emergency.git"
-  },
+  "private": true,
   "dependencies": {
     "axios": "^0.19",
     "cross-env": "^6",

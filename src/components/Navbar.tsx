@@ -1,12 +1,9 @@
 import React, { useContext } from 'react'
 import styled, { css } from 'styled-components';
 
-import card from '../assets/nav/card_grey.svg';
-import wallet from '../assets/nav/wallet_grey.svg';
-import chat from '../assets/nav/chat_grey.svg';
-import cardBlue from '../assets/nav/card_blue.svg';
-import walletBlue from '../assets/nav/wallet_blue.svg';
-import chatBlue from '../assets/nav/chat_blue.svg';
+import card from '../assets/nav/card.svg';
+import wallet from '../assets/nav/wallet.svg';
+import chat from '../assets/nav/chat.svg';
 import logoutIcon from '../assets/nav/logout.svg';
 import { rApi, routes } from "../api";
 import { ChatContext } from "../contexts/ChatContext";
@@ -39,9 +36,16 @@ const Label = styled.div`
 	font-size: .85rem;
 `;
 
-const Img = styled.img`
+const Img = styled.img<{ blue?: boolean, active?: boolean }>`
 	width: 1.5rem;
 	height: 1.5rem;
+	transition: 200ms filter ease;
+	${props => props.blue && css`
+	  filter: invert(68%) sepia(17%) saturate(206%) hue-rotate(167deg) brightness(84%) contrast(85%);
+	`}
+	${props => props.active && css`
+		filter: invert(37%) sepia(71%) saturate(5593%) hue-rotate(198deg) brightness(97%) contrast(101%);
+	`}
 `;
 
 const Dot = styled.div`
@@ -57,9 +61,9 @@ const Dot = styled.div`
 `;
 
 const items = [
-  { label: 'Accounts', img: wallet, imgOn: walletBlue, screen: 'main/transactions' },
-  { label: 'Cards', img: card, imgOn: cardBlue, screen: 'main/cards' },
-  { label: 'Chat', img: chat, imgOn: chatBlue, screen: 'main/chats' },
+  { label: 'Accounts', img: wallet, screen: 'main/transactions' },
+  { label: 'Cards', img: card, screen: 'main/cards' },
+  { label: 'Chat', img: chat, screen: 'main/chats' },
 ];
 
 export const Navbar = () => {
@@ -79,7 +83,7 @@ export const Navbar = () => {
 
   return <Container>
     {items.map(item => <Item key={item.label} onClick={() => setScreen(item.screen)} active={screen === item.screen}>
-      <Img src={screen === item.screen ? item.imgOn : item.img} />
+      <Img src={item.img} blue active={screen === item.screen} />
       <Label>{item.label}</Label>
       {item.label === 'Chat' && unread > 0 && <Dot />}
     </Item>)}
