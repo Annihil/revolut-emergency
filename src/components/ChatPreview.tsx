@@ -89,7 +89,7 @@ interface Props {
 }
 
 export const ChatPreview = ({ active, onClick, chatHistory }: Props) => {
-  const { loadAgentInfo, loadAgentAvatar, agents } = useContext(ChatContext);
+  const { loadAgentInfo, loadAgentAvatar, agents, delAgentAvatar } = useContext(ChatContext);
   const agent = agents[chatHistory.assigned];
 
   useEffect(() => {
@@ -97,12 +97,11 @@ export const ChatPreview = ({ active, onClick, chatHistory }: Props) => {
       loadAgentInfo(chatHistory.assigned);
       loadAgentAvatar(chatHistory.assigned);
     }
-    // eslint-disable-next-line
   }, []);
 
 
   return <Container active={active} onClick={onClick}>
-    <AgentAvatar src={agent?.avatar} />
+    <AgentAvatar src={agent?.avatar} onError={() => delAgentAvatar(agent?.id)} />
     <AgentNameMessage>
       <AgentNameDate>
         <AgentName>{agent?.name}</AgentName>

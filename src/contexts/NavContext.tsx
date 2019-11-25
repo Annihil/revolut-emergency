@@ -25,7 +25,6 @@ export const NavContextProvider = (props: { children: ReactNode }) => {
       loading,
       setLoading
     }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [screen, loading],
   );
 

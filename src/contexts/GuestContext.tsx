@@ -26,7 +26,6 @@ export const GuestContextProvider = (props: { children: ReactNode }) => {
       verificationOptions,
       setVerificationOptions,
     }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       phone,
       loginChannel,

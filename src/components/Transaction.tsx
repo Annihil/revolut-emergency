@@ -159,7 +159,6 @@ const UserLogo = ({ user }: { user: { id: string, firstName?: string, lastName?:
     (async () => {
       setImg(await loadUserImage(user.id));
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!img) return <LogoLetters>{user.firstName!.charAt(0)}{user.lastName!.charAt(0)}</LogoLetters>;

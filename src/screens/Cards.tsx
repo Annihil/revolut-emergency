@@ -1,5 +1,4 @@
-import React, { useCallback, useContext, useEffect } from 'react'
-import { ICard, rApi, routes } from "../api";
+import React, { useContext, useEffect } from 'react'
 import styled from 'styled-components';
 import snowflake from '../assets/card/snowflake.svg';
 import { Card } from "../components/Card";
@@ -53,24 +52,10 @@ const Subtitle = styled.div`
 `;
 
 export const Cards = () => {
-  const { cards, setCards, loadCards } = useContext(CardContext);
-
-  const blockCard = useCallback(async (card) => {
-    let res = null as { data: ICard } | null;
-    try {
-      res = await rApi.post(routes.myCardBlock(card.id)) as { data: ICard } | null;
-    } catch (e) {
-      return console.error(e.response);
-    }
-
-    console.log({ blockCard: res!.data });
-
-    setCards(cards.map(c => c.id === card.id ? res!.data : c));
-  }, [cards, setCards]);
+  const { cards, blockCard, loadCards } = useContext(CardContext);
 
   useEffect(() => {
     loadCards();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!cards.length) return null;

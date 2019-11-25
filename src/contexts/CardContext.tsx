@@ -5,6 +5,7 @@ interface ICardContext {
   cards: ICard[]
   setCards: (card: ICard[]) => void
   loadCards: () => void
+  blockCard: (card: ICard) => void
 }
 
 export const CardContext = React.createContext<ICardContext>({} as ICardContext);
@@ -22,7 +23,19 @@ export const CardContextProvider = (props: { children: ReactNode }) => {
 
     console.log({ cards: res.data });
     setCards(res.data);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const blockCard = useCallback(async (card: ICard) => {
+    let res = null as { data: ICard } | null;
+    try {
+      res = await rApi.post(routes.myCardBlock(card.id)) as { data: ICard } | null;
+    } catch (e) {
+      return console.error(e.response);
+    }
+
+    console.log({ blockCard: res!.data });
+
+    setCards(prevCards => prevCards.map(c => c.id === card.id ? res!.data : c));
   }, []);
 
   const value = React.useMemo(
@@ -30,11 +43,9 @@ export const CardContextProvider = (props: { children: ReactNode }) => {
       cards,
       setCards,
       loadCards,
+      blockCard
     }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [
-      cards,
-    ],
+    [cards],
   );
 
   return <CardContext.Provider value={value} {...props} />

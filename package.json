@@ -1,7 +1,7 @@
 {
   "name": "r-emergency",
   "homepage": "https://github.com/Annihil/revolut-emergency",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "main": "public/electron.js",
   "license": "MIT",
   "author": "Annihil",
@@ -41,10 +41,14 @@
   },
   "scripts": {
     "react-start": "react-scripts start",
-    "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && cross-env DEV=1 electron .\""
+    "start": "concurrently \"cross-env EXTEND_ESLINT=true BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && cross-env DEV=1 electron .\""
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "react-hooks/exhaustive-deps": "off",
+      "no-loop-func": "off"
+    }
   },
   "browserslist": {
     "production": [

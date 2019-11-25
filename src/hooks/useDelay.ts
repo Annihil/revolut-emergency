@@ -9,7 +9,6 @@ export const useDelay = (i: number) => {
     return () => {
       clearTimeout(timer)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return ready;

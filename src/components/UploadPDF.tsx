@@ -25,7 +25,6 @@ export const UploadPDF = ({ payload, fromClient }: { payload: PayloadUpload, fro
   const { uploads, loadUpload } = useContext(ChatContext);
   useEffect(() => {
     if (!uploads[payload.uploadId]) loadUpload(payload.uploadId);
-    // eslint-disable-next-line
   }, []);
 
   if (!uploads[payload.uploadId]) return null;

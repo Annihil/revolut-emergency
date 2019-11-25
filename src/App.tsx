@@ -5,33 +5,37 @@ import { OverlaySpinner } from "./components/Spinner";
 import { Main } from "./screens/Main";
 import { TitleBarBtns } from "./components/TitleBarBtns";
 import { NavContext, NavContextProvider } from "./contexts/NavContext";
-import { TransactionContextProvider } from "./contexts/TransactionContext";
-import { CardContextProvider } from "./contexts/CardContext";
 import { GuestContextProvider } from "./contexts/GuestContext";
+import { CardContextProvider } from "./contexts/CardContext";
 import { ChatContextProvider } from "./contexts/ChatContext";
+import { TransactionContextProvider } from "./contexts/TransactionContext";
 
 const Screen = () => {
   const { screen } = useContext(NavContext);
 
   if (screen === 'login')
-    return <GuestContextProvider><Login /></GuestContextProvider>;
+    return <Login />;
   if (screen === 'confirm')
-    return <GuestContextProvider><Confirm /></GuestContextProvider>;
+    return <Confirm />;
   if (screen.startsWith('main'))
-    return <TransactionContextProvider>
-      <CardContextProvider>
-        <ChatContextProvider>
-          <Main />
-        </ChatContextProvider>
-      </CardContextProvider>
-    </TransactionContextProvider>;
+    return <Main />;
   return <div>=(</div>
 };
 
-const App = () => <NavContextProvider>
+const App = () => <>
   <TitleBarBtns />
-  <Screen />
+  <NavContextProvider>
+    <GuestContextProvider>
+      <TransactionContextProvider>
+        <CardContextProvider>
+          <ChatContextProvider>
+            <Screen />
+          </ChatContextProvider>
+        </CardContextProvider>
+      </TransactionContextProvider>
+    </GuestContextProvider>
+  </NavContextProvider>
   <OverlaySpinner />
-</NavContextProvider>;
+</>;
 
 export default App;

@@ -9,6 +9,7 @@ import loungeOnPc from "../assets/lottie/lounge_on_pc.json";
 import { BackButton } from "../components/BackButton";
 import { GuestContext } from "../contexts/GuestContext";
 import { NavContext } from "../contexts/NavContext";
+import { TransactionContext } from "../contexts/TransactionContext";
 
 const shell = window.require('electron').shell;
 
@@ -70,6 +71,7 @@ export const Confirm = () => {
   const [code, setCode] = useState('');
   const { setScreen, setLoading } = useContext(NavContext);
   const { phone, loginChannel, verificationOptions } = useContext(GuestContext);
+  const { setWallet } = useContext(TransactionContext);
   const [error, setError] = useState(null as null | string);
   const [codeInvalid, setCodeInvalid] = useState(false);
 
@@ -97,6 +99,7 @@ export const Confirm = () => {
       username: res.data.user.id,
       password: res.data.accessToken
     };
+    setWallet(res.data.wallet);
     localStorage.setItem('id', res.data.user.id);
     localStorage.setItem('accessToken', res.data.accessToken);
     setScreen('main/transactions');

@@ -43,7 +43,6 @@ export const TransactionContextProvider = (props: { children: ReactNode }) => {
 
     console.log({ wallet: res.data });
     setWallet(res.data);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadTotalBalance = useCallback(async () => {
@@ -66,7 +65,6 @@ export const TransactionContextProvider = (props: { children: ReactNode }) => {
     }
     console.log({ totalBalance, baseCurrency: wallet!.baseCurrency });
     setTotalBalance(totalBalance);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wallet]);
 
   const loadLastTransactions = useCallback(async () => {
@@ -97,8 +95,7 @@ export const TransactionContextProvider = (props: { children: ReactNode }) => {
       }
       return [...transactionToAdd, ...prevTransactions]
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [setTransactions]);
+  }, []);
 
   const loadAllTransactions = useCallback(async () => {
     try {
@@ -111,7 +108,6 @@ export const TransactionContextProvider = (props: { children: ReactNode }) => {
           if (res!.data.length) {
             next = res!.data[res!.data.length - 1].startedDate;
           }
-          // eslint-disable-next-line no-loop-func
           setTransactions(prevTransactions => [...prevTransactions, ...res!.data]);
         } catch (e) {
           console.warn(e)
@@ -120,7 +116,7 @@ export const TransactionContextProvider = (props: { children: ReactNode }) => {
     } catch (e) {
       return console.error(e.response);
     }
-  }, [setTransactions]);
+  }, []);
 
   const value = React.useMemo(
     () => ({
@@ -137,7 +133,6 @@ export const TransactionContextProvider = (props: { children: ReactNode }) => {
       unified,
       setUnified: setUnifiedLocal,
     }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       wallet,
       transactions,

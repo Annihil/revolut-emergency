@@ -89,13 +89,11 @@ export const Chats = () => {
   useEffect(() => {
     if (!currentChat) return;
     loadMessages(currentChat);
-    // eslint-disable-next-line
   }, [currentChat]);
 
   useEffect(() => {
     if (!currentChat || chat?.length === 0) return;
     readChat();
-    // eslint-disable-next-line
   }, [currentChat, chat?.length]);
 
   const handleFile = useCallback(async () => {
@@ -115,7 +113,6 @@ export const Chats = () => {
     const formData = new FormData();
     formData.append('file', file, result.filePaths[0]);
     sendAttachment(formData);
-    // eslint-disable-next-line
   }, [currentChat]);
 
   return <Container>

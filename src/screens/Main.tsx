@@ -60,14 +60,13 @@ export const Main = () => {
 
   useEffect(() => {
     async function go() {
-      loadWallet();
+      if (!wallet) loadWallet();
       loadCards();
       await connectChat();
       loadChatHistory();
     }
 
     go()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -78,7 +77,6 @@ export const Main = () => {
     } else {
       loadLastTransactions();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wallet]);
 
   if (!wallet || !cards.length || !transactions.length) {

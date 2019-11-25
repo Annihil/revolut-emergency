@@ -19,7 +19,6 @@ export const UploadImage = ({ payload, fromClient }: { payload: PayloadUpload, f
   const { uploads, loadUpload } = useContext(ChatContext);
   useEffect(() => {
     if (!uploads[payload.uploadId]) loadUpload(payload.uploadId);
-    // eslint-disable-next-line
   }, []);
 
   if (!uploads[payload.uploadId]) return null;

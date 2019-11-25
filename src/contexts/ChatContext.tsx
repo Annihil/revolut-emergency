@@ -9,6 +9,7 @@ interface IChatContext {
   chatsHistory: IChatHistory[]
   setChatsHistory: (chatsHistory: IChatHistory[]) => void
   agents: { [key: string]: IAgent }
+  delAgentAvatar: (agentId: string) => void
   loadAgentInfo: (agentId: string) => void
   loadAgentAvatar: (agentId: string) => void
   uploads: { [key: string]: string }
@@ -58,7 +59,6 @@ export const ChatContextProvider = (props: { children: ReactNode }) => {
     chatApi.defaults.headers.authorization = `Bearer ${res.data.accessToken}`;
 
     loadUnreadChat();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadUnreadChat = useCallback(async () => {
@@ -78,7 +78,6 @@ export const ChatContextProvider = (props: { children: ReactNode }) => {
       await getTickets();
       await loadMessages(currentChat!);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentChat]);
 
   const readChat = useCallback(async () => {
@@ -91,7 +90,6 @@ export const ChatContextProvider = (props: { children: ReactNode }) => {
     console.log('read chat', currentChat);
 
     await getTickets();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentChat]);
 
   const openTicket = useCallback(async () => {
@@ -107,7 +105,6 @@ export const ChatContextProvider = (props: { children: ReactNode }) => {
     await getTickets();
 
     setCurrentChat(res!.data.id);
-    // eslint-disable-next-line
   }, []);
 
   const rateTicket = useCallback(async (rating: number) => {
@@ -122,7 +119,6 @@ export const ChatContextProvider = (props: { children: ReactNode }) => {
     await loadChatHistory();
     await getTickets();
     await loadMessages(currentChat!);
-    // eslint-disable-next-line
   }, [currentChat]);
 
   const getTickets = useCallback(async () => {
@@ -150,7 +146,6 @@ export const ChatContextProvider = (props: { children: ReactNode }) => {
     console.log({ sentText: res.data });
     setText('');
     loadMessages(currentChat!);
-    // eslint-disable-next-line
   }, [text, currentChat]);
 
   const sendAttachment = useCallback(async (formData) => {
@@ -167,7 +162,6 @@ export const ChatContextProvider = (props: { children: ReactNode }) => {
 
     console.log({ sentAttachment: res.data });
     loadMessages(currentChat!);
-    // eslint-disable-next-line
   }, [currentChat]);
 
   const loadChatHistory = useCallback(async () => {
@@ -182,7 +176,6 @@ export const ChatContextProvider = (props: { children: ReactNode }) => {
     setChatsHistory(res.data);
 
     await getTickets();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadAgentInfo = useCallback(async (agentId: string) => {
@@ -192,7 +185,6 @@ export const ChatContextProvider = (props: { children: ReactNode }) => {
     } catch (e) {
       console.error(e.response);
     }
-    console.log({ agentInfo: res });
     setAgents(prevAgents => ({
       ...prevAgents,
       [agentId]: { ...prevAgents[agentId], ...res?.data! }
@@ -209,10 +201,16 @@ export const ChatContextProvider = (props: { children: ReactNode }) => {
     } catch (e) {
       console.error(e.response);
     }
-    console.log({ agentAvatar: res });
     setAgents(prevAgents => ({
       ...prevAgents,
       [agentId]: { ...prevAgents[agentId], avatar: res?.headers.location! }
+    }));
+  }, []);
+
+  const delAgentAvatar = useCallback(async (agentId: string) => {
+    setAgents(prevAgents => ({
+      ...prevAgents,
+      [agentId]: { ...prevAgents[agentId], avatar: '' }
     }));
   }, []);
 
@@ -228,7 +226,6 @@ export const ChatContextProvider = (props: { children: ReactNode }) => {
     }
     setUploads(prevUploads => ({ ...prevUploads, [uploadId]: res?.headers.location! }));
     console.log({ uploadLocation: res });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadMessages = useCallback(async (ticketId: string) => {
@@ -247,7 +244,6 @@ export const ChatContextProvider = (props: { children: ReactNode }) => {
       ...prevMessages,
       [ticketId]: res!.data
     }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chatsHistory]);
 
   const value = React.useMemo(
@@ -257,6 +253,7 @@ export const ChatContextProvider = (props: { children: ReactNode }) => {
       chatsHistory,
       setChatsHistory,
       agents,
+      delAgentAvatar,
       loadAgentInfo,
       loadAgentAvatar,
       uploads,
@@ -278,7 +275,6 @@ export const ChatContextProvider = (props: { children: ReactNode }) => {
       setUnread,
       rateTicket
     }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       chatsHistory,
       agents,
