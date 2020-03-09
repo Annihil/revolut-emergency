@@ -4,7 +4,6 @@ import { Confirm } from "./screens/Confirm";
 import { Biometric } from "./screens/Biometric";
 import { OverlaySpinner } from "./components/Spinner";
 import { Main } from "./screens/Main";
-import { TitleBarBtns } from "./components/TitleBarBtns";
 import { NavContext, NavContextProvider } from "./contexts/NavContext";
 import { GuestContextProvider } from "./contexts/GuestContext";
 import { CardContextProvider } from "./contexts/CardContext";
@@ -26,7 +25,6 @@ const Screen = () => {
 };
 
 const App = () => <>
-  <TitleBarBtns />
   <NavContextProvider>
     <GuestContextProvider>
       <TransactionContextProvider>

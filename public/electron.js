@@ -8,7 +8,6 @@ function createWindow() {
 	mainWindow = new BrowserWindow({
 		width: 1080,
 		height: 800,
-		frame: false,
 		webPreferences: {
 			devTools: !!process.env.DEV,
 			nodeIntegration: true,
