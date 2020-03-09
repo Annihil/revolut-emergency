@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Login } from './screens/Login'
 import { Confirm } from "./screens/Confirm";
+import { Biometric } from "./screens/Biometric";
 import { OverlaySpinner } from "./components/Spinner";
 import { Main } from "./screens/Main";
 import { TitleBarBtns } from "./components/TitleBarBtns";
@@ -17,6 +18,8 @@ const Screen = () => {
     return <Login />;
   if (screen === 'confirm')
     return <Confirm />;
+  if (screen === 'biometric')
+    return <Biometric />;
   if (screen.startsWith('main'))
     return <Main />;
   return <div>=(</div>
@@ -34,8 +37,8 @@ const App = () => <>
         </CardContextProvider>
       </TransactionContextProvider>
     </GuestContextProvider>
+    <OverlaySpinner />
   </NavContextProvider>
-  <OverlaySpinner />
 </>;
 
 export default App;

@@ -3,7 +3,7 @@ import { PeerCertificate } from "tls";
 
 const { machineIdSync } = window.require('node-machine-id');
 
-const mId = machineIdSync({ original: true });
+const mId = machineIdSync({ original: true }) + '857685678';
 
 export interface ITransaction {
   id: string
@@ -180,6 +180,8 @@ export interface IMessage {
 export const routes = {
   login: '/signin',
   loginConfirm: '/signin/confirm',
+  loginBiometric: `/biometric-signin/selfie`,
+  loginBiometricConfirm: (id: string) => `/biometric-signin/confirm/${id}`,
   verificationOptions: (phone: string) => `/verification/options?phone=${encodeURIComponent(phone)}`,
   verificationCodeResend: '/verification-code/resend',
   verificationCodeCall: '/verification-code/call',
@@ -193,22 +195,22 @@ export const routes = {
 };
 
 export const chatRoutes = {
-  connect: '/api/client/signin/revolut',
-  history: '/api/client/tickets/history',
-  agentInfo: (agentId: string) => `/api/client/agents/${agentId}/info`,
-  agentAvatar: (agentId: string) => `/api/client/agents/${agentId}/avatar`,
-  ticket: '/api/client/tickets',
-  ticketMessage: (ticketId: string) => `/api/client/tickets/${ticketId}/messages/history`,
-  ticketRate: (ticketId: string) => `/api/client/tickets/${ticketId}/rate`,
-  ticketText: (ticketId: string) => `/api/client/tickets/${ticketId}/messages/text`,
-  ticketUpload: (ticketId: string) => `/api/client/tickets/${ticketId}/messages/upload`,
-  ticketRead: (ticketId: string) => `/api/client/tickets/${ticketId}/messages/read`,
-  summary: '/api/client/tickets/summary',
-  uploads: (uploadId: string) => `/api/client/uploads/${uploadId}`
+  connect: '/signin/revolut',
+  history: '/tickets/history',
+  agentInfo: (agentId: string) => `/agents/${agentId}/info`,
+  agentAvatar: (agentId: string) => `/agents/${agentId}/avatar`,
+  ticket: '/tickets',
+  ticketMessage: (ticketId: string) => `/tickets/${ticketId}/messages/history`,
+  ticketRate: (ticketId: string) => `/tickets/${ticketId}/rate`,
+  ticketText: (ticketId: string) => `/tickets/${ticketId}/messages/text`,
+  ticketUpload: (ticketId: string) => `/tickets/${ticketId}/messages/upload`,
+  ticketRead: (ticketId: string) => `/tickets/${ticketId}/messages/read`,
+  summary: '/tickets/summary',
+  uploads: (uploadId: string) => `/uploads/${uploadId}`
 };
 
 const headers = {
-  'x-client-version': '6.11',
+  'x-client-version': '6.30',
   'x-device-id': mId,
 };
 const adapter = window.require('axios/lib/adapters/http');
@@ -235,7 +237,7 @@ export const rApi = axios.create({
 });
 
 export const chatApi = axios.create({
-  baseURL: 'https://chat.revolut.com',
+  baseURL: 'https://chat.revolut.com/api/client',
   headers: {
     ...headers,
     'x-chat-version': '3.0',

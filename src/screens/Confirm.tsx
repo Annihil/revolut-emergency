@@ -16,32 +16,32 @@ const shell = window.require('electron').shell;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-	margin-top: auto;
-	margin-bottom: auto;
-	align-self: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  align-self: center;
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   min-width: 28rem;
-	align-self: center;
+  align-self: center;
 `;
 
 const Error = styled.div`
-	color: #f44336;
-	text-align: center;
+  color: #f44336;
+  text-align: center;
 `;
 
 const ChannelInfo = styled.div`
-	color: #8b959e;
-	text-align: center;
-	max-width: 28rem;
+  color: #8b959e;
+  text-align: center;
+  max-width: 28rem;
 `;
 
 const BackButtonStyled = styled(BackButton)`
-	position: absolute;
-	top: 3.2rem;
+  position: absolute;
+  top: 3.2rem;
   left: 2rem;
 `;
 
@@ -55,10 +55,10 @@ const StyledSpan = styled.span`
 `;
 
 const StyledLink = styled.a`
-	text-align: center;
-	color: #0075eb;
-	cursor: pointer;
-	margin-top: .3rem;
+  text-align: center;
+  color: #0075eb;
+  cursor: pointer;
+  margin-top: .3rem;
 `;
 
 const loginChannelMap = {
@@ -95,6 +95,16 @@ export const Confirm = () => {
     setLoading(false);
 
     console.log({ loginConfirmResult: res.data });
+
+    if ('thirdFactorAuthAccessToken' in res.data) {
+      rApi.defaults.auth = {
+        username: phone,
+        password: res.data.thirdFactorAuthAccessToken
+      };
+      setScreen('biometric');
+      return;
+    }
+
     rApi.defaults.auth = {
       username: res.data.user.id,
       password: res.data.accessToken
