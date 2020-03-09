@@ -3,7 +3,7 @@ import { PeerCertificate } from "tls";
 
 const { machineIdSync } = window.require('node-machine-id');
 
-const mId = machineIdSync({ original: true }) + '857685678';
+const mId = machineIdSync({ original: true });
 
 export interface ITransaction {
   id: string

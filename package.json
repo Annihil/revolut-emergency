@@ -1,14 +1,14 @@
 {
   "name": "r-emergency",
   "homepage": "https://github.com/Annihil/revolut-emergency",
-  "version": "3.3.2",
+  "version": "6.3.0",
   "main": "public/electron.js",
   "license": "MIT",
   "author": "Annihil",
   "private": true,
   "dependencies": {
     "axios": "^0.19",
-    "cross-env": "^6",
+    "cross-env": "^7",
     "currency-symbol-map": "^4",
     "lottie-web": "^5",
     "moment": "^2",
@@ -17,9 +17,9 @@
     "react": "^16",
     "react-dom": "^16",
     "react-lottie": "^1",
-    "react-scripts": "^3.3.0-next.62",
+    "react-scripts": "^3",
     "react-useinterval": "^1",
-    "styled-components": "^4",
+    "styled-components": "^5",
     "typescript": "^3",
     "he": "^1",
     "form-data": "^3"
@@ -30,11 +30,11 @@
     "@types/react": "^16",
     "@types/react-dom": "^16",
     "@types/react-lottie": "^1",
-    "@types/styled-components": "^4",
+    "@types/styled-components": "^5",
     "@types/he": "^1",
     "concurrently": "^5",
-    "electron": "^7",
-    "wait-on": "^3"
+    "electron": "^8",
+    "wait-on": "^4"
   },
   "scripts": {
     "react-start": "react-scripts start",
@@ -49,10 +49,12 @@
   },
   "browserslist": {
     "production": [
-      "last 1 electron version"
+      "last 1 electron version",
+      "chrome 79"
     ],
     "development": [
-      "last 1 electron version"
+      "last 1 electron version",
+      "chrome 79"
     ]
   }
 }
