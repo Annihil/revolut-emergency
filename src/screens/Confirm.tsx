@@ -46,12 +46,12 @@ const BackButtonStyled = styled(BackButton)`
 `;
 
 const StyledSpan = styled.span`
-	margin-left: .25rem;
-	cursor: pointer;
-	
-	:hover {
-		color: #0075eb;
-	}
+  margin-left: .25rem;
+  cursor: pointer;
+  
+  :hover {
+    color: #0075eb;
+  }
 `;
 
 const StyledLink = styled.a`
@@ -145,16 +145,16 @@ export const Confirm = () => {
     <Spacer height='3rem' />
     <Form onSubmit={e => handleSubmit(e)}>
       {loginChannel === 'SMS' && <>
-				<ChannelInfo>A 6-digit verification code has been sent to you via {loginChannelPretty}</ChannelInfo>
-				<StyledLink onClick={requestSMS}>Resend code</StyledLink>
-			</>}
+        <ChannelInfo>A 6-digit verification code has been sent to you via {loginChannelPretty}</ChannelInfo>
+        <StyledLink onClick={requestSMS}>Resend code</StyledLink>
+      </>}
       {loginChannel === 'EMAIL' && <>
-				<ChannelInfo>
-					A 6-digit verification code has been sent to you via {loginChannelPretty} at {channel!.value}
+        <ChannelInfo>
+          A 6-digit verification code has been sent to you via {loginChannelPretty} at {channel!.value}
           {loginChannel === 'EMAIL' && <StyledSpan onClick={openEmailWiki}>[?]</StyledSpan>}
-				</ChannelInfo>
-				<StyledLink onClick={requestCall}>Get code via phone call</StyledLink>
-			</>}
+        </ChannelInfo>
+        <StyledLink onClick={requestCall}>Get code via phone call</StyledLink>
+      </>}
       <Spacer height='3rem' />
       <FloatingInput
         value={code}
@@ -169,9 +169,9 @@ export const Confirm = () => {
       />
       <Spacer height='3rem' />
       {error && <>
-				<Error>{error}</Error>
-				<Spacer height='3rem' />
-			</>}
+        <Error>{error}</Error>
+        <Spacer height='3rem' />
+      </>}
       <PinkButton
         type="submit"
       >

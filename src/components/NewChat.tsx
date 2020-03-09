@@ -3,18 +3,18 @@ import styled from "styled-components";
 import chat from '../assets/chat/chat_white.svg';
 
 const Container = styled.div`
-	display: flex;
-	padding: 1rem;
-	width: 20rem;
-	cursor: pointer;
-	
-	:hover {
-	  background-color: #f4f5f5;
-	}
+  display: flex;
+  padding: 1rem;
+  width: 20rem;
+  cursor: pointer;
+  
+  :hover {
+    background-color: #f4f5f5;
+  }
 `;
 
 const Img = styled.div`
-	width: 2.5rem; 
+  width: 2.5rem; 
   height: 2.5rem;
   background-image: url(${chat});
   background-size: 1.66rem 1.66rem;

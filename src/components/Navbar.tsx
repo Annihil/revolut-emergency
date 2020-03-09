@@ -10,42 +10,42 @@ import { ChatContext } from "../contexts/ChatContext";
 import { NavContext } from "../contexts/NavContext";
 
 const Container = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	box-shadow: 0 0 9px 0 rgba(168, 168, 168, .3);
-	-webkit-app-region: drag;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 0 0 9px 0 rgba(168, 168, 168, .3);
+  -webkit-app-region: drag;
 `;
 
 const Item = styled.div<{ active?: boolean }>`
   position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-flow: column;
-	padding: .25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  padding: .25rem;
   cursor: pointer;
   -webkit-app-region: no-drag;
-	
-	${props => props.active && css`
-		cursor: default;
-	`}
+  
+  ${props => props.active && css`
+    cursor: default;
+  `}
 `;
 
 const Label = styled.div`
-	font-size: .85rem;
+  font-size: .85rem;
 `;
 
 const Img = styled.img<{ blue?: boolean, active?: boolean }>`
-	width: 1.5rem;
-	height: 1.5rem;
-	transition: 200ms filter ease;
-	${props => props.blue && css`
-	  filter: invert(68%) sepia(17%) saturate(206%) hue-rotate(167deg) brightness(84%) contrast(85%);
-	`}
-	${props => props.active && css`
-		filter: invert(37%) sepia(71%) saturate(5593%) hue-rotate(198deg) brightness(97%) contrast(101%);
-	`}
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: 200ms filter ease;
+  ${props => props.blue && css`
+    filter: invert(68%) sepia(17%) saturate(206%) hue-rotate(167deg) brightness(84%) contrast(85%);
+  `}
+  ${props => props.active && css`
+    filter: invert(37%) sepia(71%) saturate(5593%) hue-rotate(198deg) brightness(97%) contrast(101%);
+  `}
 `;
 
 const Dot = styled.div`

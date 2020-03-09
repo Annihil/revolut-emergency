@@ -129,16 +129,16 @@ export const Biometric = () => {
   };
 
   return <Container>
-    <BackButtonStyled onClick={() => setScreen('login')}/>
+    <BackButtonStyled onClick={() => setScreen('login')} />
     <Container2>
       <Title>Please take a Selfie</Title>
-      <Spacer height='2.2rem'/>
-      <Canvas ref={canvasRef} width="800" height="600"/>
-      <video ref={videoRef} autoPlay/>
-      <Spacer height='3rem'/>
+      <Spacer height='2.2rem' />
+      <Canvas ref={canvasRef} width="800" height="600" />
+      <video ref={videoRef} autoPlay />
+      <Spacer height='3rem' />
       {error && <>
-          <Error>{error}</Error>
-          <Spacer height='3rem'/>
+        <Error>{error}</Error>
+        <Spacer height='3rem' />
       </>}
       <StyledPinkButton onClick={submit}>Take</StyledPinkButton>
     </Container2>

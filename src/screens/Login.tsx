@@ -12,21 +12,21 @@ import { GuestContext } from "../contexts/GuestContext";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-	margin-top: auto;
-	margin-bottom: auto;
-	align-self: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  align-self: center;
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   min-width: 28rem;
-	align-self: center;
+  align-self: center;
 `;
 
 const Error = styled.div`
-	color: #f44336;
-	text-align: center;
+  color: #f44336;
+  text-align: center;
 `;
 
 export const Login = () => {
@@ -115,9 +115,9 @@ export const Login = () => {
       />
       <Spacer height='3rem' />
       {error && <>
-				<Error>{error}</Error>
-				<Spacer height='3rem' />
-			</>}
+        <Error>{error}</Error>
+        <Spacer height='3rem' />
+      </>}
       <PinkButton
         type="submit"
       >

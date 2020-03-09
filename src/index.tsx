@@ -38,23 +38,23 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     display: flex;
-		justify-content: center;
+    justify-content: center;
   }
   
   #root {
-		display: flex;
-		flex: 1;
-		flex-flow: column;
-		width: 100%;
-		height: 100%;
-	}
-	
-	input::-webkit-outer-spin-button,
-	input::-webkit-inner-spin-button {
-		display: none;
-		-webkit-appearance: none;
-		margin: 0;
-	}
+    display: flex;
+    flex: 1;
+    flex-flow: column;
+    width: 100%;
+    height: 100%;
+  }
+  
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    display: none;
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;
 
 ReactDOM.render(<>

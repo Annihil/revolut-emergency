@@ -2,16 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.button`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 3.5rem;
-	height: 3.5rem;
-	border: 1px solid #ced5db;
-	background: #fff;
-	border-radius: 50%;
-	cursor: pointer;
-	outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 1px solid #ced5db;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
   
   :hover, :focus {
     transform: scale(1.035);
@@ -21,8 +21,8 @@ const Container = styled.button`
 `;
 
 const StyledSvg = styled.svg`
-	fill: #8b959e;
-	width: 1.5rem;
+  fill: #8b959e;
+  width: 1.5rem;
   height: 1.5rem;
 `;
 

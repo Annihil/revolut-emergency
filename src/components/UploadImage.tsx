@@ -6,11 +6,11 @@ import { ChatContext } from "../contexts/ChatContext";
 const StyledUploadImg = styled.img<{ fromClient: boolean }>`
   max-width: 10rem;
   max-height: 10rem;
-	border-radius: 1rem;
-	align-self: flex-start;
-	margin: .5rem 0;
-	
-	${props => props.fromClient && css`
+  border-radius: 1rem;
+  align-self: flex-start;
+  margin: .5rem 0;
+  
+  ${props => props.fromClient && css`
     align-self: flex-end;
   `}
 `;

@@ -7,12 +7,12 @@ import { ChatContext } from "../contexts/ChatContext";
 const ResolveContainer = styled.div`
   background-color: #f3f4f5;
   padding: 1rem;
-	border-radius: 1rem;
-	align-self: flex-start;
-	display: flex;
-	flex-direction: row-reverse;
-	
-	img:hover,
+  border-radius: 1rem;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: row-reverse;
+  
+  img:hover,
   img:hover ~ img {
     background: url(${starSolid});
   }

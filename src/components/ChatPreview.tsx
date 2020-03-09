@@ -5,31 +5,31 @@ import { IChatHistory } from "../api";
 import { ChatContext } from "../contexts/ChatContext";
 
 const Container = styled.div<{ active: boolean }>`
-	display: flex;
-	padding: 1rem;
-	width: 20rem;
-	cursor: pointer;
-	
-	:hover {
-	  background-color: #f4f5f5;
-	}
-	
-	${props => props.active && css`
+  display: flex;
+  padding: 1rem;
+  width: 20rem;
+  cursor: pointer;
+  
+  :hover {
+    background-color: #f4f5f5;
+  }
+  
+  ${props => props.active && css`
     background-color: #e9ebeb !important;
     cursor: default;
   `}
 `;
 
 const AgentAvatar = styled.img`
-	width: 2.5rem;
-	display: flex;
-	flex-basis: 2.5rem;
-	flex-shrink: 0;
-	height: 2.5rem;
-	border-radius: 50%;
-	overflow: hidden;
-	position: relative;
-	
+  width: 2.5rem;
+  display: flex;
+  flex-basis: 2.5rem;
+  flex-shrink: 0;
+  height: 2.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  
   :before {
     content: '';
     display: inline-block;
@@ -66,7 +66,7 @@ const Date = styled.div`
 `;
 
 const ChatText = styled.div`
-	white-space: nowrap;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   width: 16rem;

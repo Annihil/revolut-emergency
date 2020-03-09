@@ -7,46 +7,46 @@ import threeColumnsLayout from '../assets/nav/three_columns_layout.svg';
 import { amountFmt } from "../util";
 
 const PocketScroller = css`
-	display: flex;
-	flex-flow: column;
-	overflow-y: scroll;
-	width: 100%;
+  display: flex;
+  flex-flow: column;
+  overflow-y: scroll;
+  width: 100%;
 `;
 
 const Container = styled.div`
-	display: flex;
-	align-items: flex-start;
-	flex: 1;
-	height: 0;
-	flex-flow: row nowrap;
-	overflow-x: scroll;
-	width: 100%;
-	
-	.pocket-scroller {
-	  ${PocketScroller}
-	}
+  display: flex;
+  align-items: flex-start;
+  flex: 1;
+  height: 0;
+  flex-flow: row nowrap;
+  overflow-x: scroll;
+  width: 100%;
+  
+  .pocket-scroller {
+    ${PocketScroller}
+  }
 `;
 
 const Pocket = styled.div<{ large?: boolean }>`
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	flex-flow: column;
-	width: 25rem;
-	height: 100%;
-	margin: 0 auto;
-	padding: 0 4rem;
-	${props => props.large && css`
-		width: 40rem;
-	`}
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-flow: column;
+  width: 25rem;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 4rem;
+  ${props => props.large && css`
+    width: 40rem;
+  `}
 `;
 
 const Balance = styled.div`
-	font-size: 2rem;
-	margin: 1rem 0;
+  font-size: 2rem;
+  margin: 1rem 0;
 `;
 
-const UnifyButton = styled.img<{active: boolean}>`
+const UnifyButton = styled.img<{ active: boolean }>`
   position: absolute;
   cursor: pointer;
   right: 1rem;
@@ -54,9 +54,9 @@ const UnifyButton = styled.img<{active: boolean}>`
   width: 1.5rem;
   transition: 200ms filter ease;
   filter: invert(68%) sepia(17%) saturate(206%) hue-rotate(167deg) brightness(84%) contrast(85%);
-	${props => props.active && css`
+  ${props => props.active && css`
     filter: invert(37%) sepia(71%) saturate(5593%) hue-rotate(198deg) brightness(97%) contrast(101%);
-	`}
+  `}
 `;
 
 
@@ -83,11 +83,11 @@ export const Transactions = () => {
       </Pocket>
     })}
     {unified && <Pocket large>
-			<Balance>{getSymbolFromCurrency(wallet.baseCurrency)}{amountFmt(totalBalance)}</Balance>
-			<virtual-scroller class='pocket-scroller'>
+      <Balance>{getSymbolFromCurrency(wallet.baseCurrency)}{amountFmt(totalBalance)}</Balance>
+      <virtual-scroller class='pocket-scroller'>
         {transactions.filter(t => t.account?.type === 'CURRENT').map((t, i) =>
           <TransactionDelayed i={i} {...t} key={t.legId} />)}
-			</virtual-scroller>
-		</Pocket>}
+      </virtual-scroller>
+    </Pocket>}
   </Container>
 };

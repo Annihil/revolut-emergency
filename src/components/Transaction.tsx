@@ -64,19 +64,19 @@ const StyledInner = styled.div`
 `;
 
 const LogoContainer = styled.div`
-	position: relative;
-	width: 2.5rem;
-	height: 2.5rem;
-	display: inline-flex;
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
 `;
 
 const Logo = styled.img<{ fallback?: string }>`
-	width: 2.5rem;
-	height: 2.5rem;
-	border-radius: 50%;
-	overflow: hidden;
-	position: relative;
-	
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  
   :before {
     content: '';
     display: inline-block;
@@ -90,23 +90,23 @@ const Logo = styled.img<{ fallback?: string }>`
 
 const LogoLetters = styled.div`
   width: 2.5rem;
-	height: 2.5rem;
-	border-radius: 50%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: white;
-	background-color: #7986CB;
-	font-size: .92rem;
-	text-transform: uppercase;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #7986CB;
+  font-size: .92rem;
+  text-transform: uppercase;
 `;
 
 const State = styled.img`
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	width: 14px;
-	height: 14px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 14px;
+  height: 14px;
 `;
 
 const Texts = styled.div`
@@ -117,22 +117,22 @@ const Texts = styled.div`
 `;
 
 const Description = styled.span<Pick<ITransaction, 'state'>>`
-	font-family: 'Roboto Medium', sans-serif;
-	${props => props.state.match(/REVERTED|DECLINED|FAILED/) && css`
-		color: #8b959e;
-	`}
+  font-family: 'Roboto Medium', sans-serif;
+  ${props => props.state.match(/REVERTED|DECLINED|FAILED/) && css`
+    color: #8b959e;
+  `}
 `;
 
 const Amount = styled.span<Pick<ITransaction, 'state'>>`
   white-space: nowrap;
   margin-left: .5rem;
-	${props => props.state.match(/REVERTED|DECLINED|FAILED/) && css`
-		text-decoration: line-through;
-	`}
+  ${props => props.state.match(/REVERTED|DECLINED|FAILED/) && css`
+    text-decoration: line-through;
+  `}
 `;
 
 const Time = styled.span`
-	color: #cfd8dc;
+  color: #cfd8dc;
 `;
 
 const ExchangedAmount = styled.span`
@@ -142,8 +142,8 @@ const ExchangedAmount = styled.span`
 `;
 
 const Row = styled.div`
-	display: flex;
-	justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const TransactionDelayed = (props: ITransaction & { i: number, onClick?: () => void }) => {
@@ -176,10 +176,10 @@ const Transaction = ({ merchant, description, amount, currency, counterpart, typ
         {!state.match(/REVERTED|DECLINED|FAILED/) && <>
           {merchant && <Logo src={merchant.logo || tags[tag]} fallback={tags[tag]} />}
           {!merchant && !isUser(recipient, sender) && !cashbackBoxId &&
-					<Logo src={tag !== 'general' ? tags[tag] : types[type]} />}
+          <Logo src={tag !== 'general' ? tags[tag] : types[type]} />}
           {isUser(recipient, sender) && <UserLogo user={sender || recipient} />}
           {cashbackBoxId && <Logo src={vaultCashback} />}
-				</>}
+        </>}
         {state === 'PENDING' && <State src={pending} />}
         {state === 'COMPLETED' && type === 'TRANSFER' && amount > 0 && <State src={transferIn} />}
         {state === 'COMPLETED' && type === 'TRANSFER' && amount < 0 && <State src={transferOut} />}
@@ -199,7 +199,7 @@ const Transaction = ({ merchant, description, amount, currency, counterpart, typ
             {state === 'PENDING' && ', pending'}
           </Time>
           {counterpart && counterpart.currency !== currency &&
-					<ExchangedAmount>{sign(counterpart.amount)}{getSymbolFromCurrency(counterpart.currency)}{amountFmt(counterpart.amount)}</ExchangedAmount>}
+          <ExchangedAmount>{sign(counterpart.amount)}{getSymbolFromCurrency(counterpart.currency)}{amountFmt(counterpart.amount)}</ExchangedAmount>}
         </Row>
       </Texts>
     </StyledInner>

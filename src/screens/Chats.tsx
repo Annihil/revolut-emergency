@@ -16,33 +16,33 @@ const fs = window.require('fs');
 const { dialog } = window.require('electron').remote;
 
 const Container = styled.div`
-	display: flex;
-	flex: 1;
-	min-height: 0;
+  display: flex;
+  flex: 1;
+  min-height: 0;
 `;
 
 const Side = styled.div`
-	display: flex;
-	min-height: 0;
-	overflow-y: scroll;
-	min-width: 20rem;
-	flex-direction: column;
+  display: flex;
+  min-height: 0;
+  overflow-y: scroll;
+  min-width: 20rem;
+  flex-direction: column;
 `;
 
 const Main = styled.div`
-	display: flex;
-	min-height: 0;
-	flex: 1;
-	flex-direction: column;
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
 `;
 
 const Messages = styled.div`
-	display: flex;
-	min-height: 0;
-	overflow-y: scroll;
-	flex-direction: column-reverse;
-	flex: 1;
-	padding: 1rem;
+  display: flex;
+  min-height: 0;
+  overflow-y: scroll;
+  flex-direction: column-reverse;
+  flex: 1;
+  padding: 1rem;
 `;
 
 const Loader = styled(Spinner)`
@@ -150,11 +150,11 @@ export const Chats = () => {
         }
       </Messages>
       {chatHistory?.readOnly === false &&
-			<ContainerTxt>
-				<TxtArea value={text} onChange={e => setText(e.target.value)} />
+      <ContainerTxt>
+        <TxtArea value={text} onChange={e => setText(e.target.value)} />
         {!text.length && <UploadAttachmentBtn src={attach} onClick={() => handleFile()} />}
         {!!text.length && <SendButton onClick={() => sendText()}>Send</SendButton>}
-			</ContainerTxt>}
+      </ContainerTxt>}
     </Main>
   </Container>
 };

@@ -19,10 +19,10 @@ export const Input = styled.input<{ width?: string, code?: boolean, rows?: numbe
 `;
 
 const labelFocusStyle = css`
-	top: -1rem;
-	font-size: .8rem;
-	opacity: .8;
-	color: #0075eb;
+  top: -1rem;
+  font-size: .8rem;
+  opacity: .8;
+  color: #0075eb;
 `;
 
 const Label = styled.label<{ focus: boolean, invalid: boolean }>`
@@ -40,28 +40,28 @@ const Label = styled.label<{ focus: boolean, invalid: boolean }>`
   ${props => props.focus ? labelFocusStyle : ''}
   
   ${props => props.invalid ? css`
-		color: #8b959e !important;
-	` : ''}
+    color: #8b959e !important;
+  ` : ''}
 `;
 
 const Line = styled.div<{ invalid: boolean }>`
-	position: absolute;
-	bottom: 0;
-	height: 2px;
-	width: 100%;
-	background: #0075eb;
-	transform-origin: left bottom;
-	transform: scale(0);
-	transition: transform 450ms cubic-bezier(.23, 1, .32, 1), background 450ms cubic-bezier(.23, 1, .32, 1);
-	
-	${Input}:focus ~ & {
-		transform: scale(1);
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: #0075eb;
+  transform-origin: left bottom;
+  transform: scale(0);
+  transition: transform 450ms cubic-bezier(.23, 1, .32, 1), background 450ms cubic-bezier(.23, 1, .32, 1);
+  
+  ${Input}:focus ~ & {
+    transform: scale(1);
   }
   
   ${props => props.invalid ? css`
-		background-color: #f44336;
-		transform: scale(1);
-	` : ''}
+    background-color: #f44336;
+    transform: scale(1);
+  ` : ''}
 `;
 
 interface Props {

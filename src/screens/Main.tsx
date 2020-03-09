@@ -13,19 +13,19 @@ import { CardContext } from "../contexts/CardContext";
 import { ChatContext } from "../contexts/ChatContext";
 
 const Container = styled.div`
-	display: flex;
-	flex-flow: column;
-	flex: 1;
-	height: 100%;
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+  height: 100%;
 `;
 
 const Placeholder = styled.div`
-	display: flex;
-	flex: 1;
-	align-items: center;
-	justify-content: center;
-	color: #8b959e;
-	font-size: 2.5rem;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  color: #8b959e;
+  font-size: 2.5rem;
 `;
 
 const Screen = () => {

@@ -21,15 +21,15 @@ const StyledSpinner = styled.img`
 `;
 
 const StyledOverlaySpinner = styled.div`
-	background-color: rgba(255, 255, 255, .5);
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  background-color: rgba(255, 255, 255, .5);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const OverlaySpinner = () => {
