@@ -20,7 +20,7 @@ in case of emergency such as loss of phone.
 
 [Download for macOS](https://github.com/Annihil/revolut-emergency/releases/latest/download/r-emergency.dmg) •
 [Download for Windows](https://github.com/Annihil/revolut-emergency/releases/latest/download/r-emergency.exe) •
-[Download for Linux](https://github.com/Annihil/revolut-emergency/releases/latest/download/r-emergency_amd64.snap)
+[Download for Linux](https://github.com/Annihil/revolut-emergency/releases/latest/download/r-emergency.snap)
 
 # Install from source
 1. Clone or download this repository
