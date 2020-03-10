@@ -1,6 +1,7 @@
-const {app, BrowserWindow} = require("electron");
+const {app, BrowserWindow, Menu} = require("electron");
 const path = require("path");
 let mainWindow;
+Menu.setApplicationMenu(false);
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = true;
 
