@@ -108,6 +108,10 @@ export const Chats = () => {
 
     console.log({ result });
 
+    if (!result.filePaths[0]) { // handle cancel clicked
+      return;
+    }
+
     const file = fs.readFileSync(result.filePaths[0]);
 
     const formData = new FormData();
