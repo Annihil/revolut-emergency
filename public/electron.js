@@ -1,7 +1,12 @@
 const {app, BrowserWindow, Menu} = require("electron");
 const path = require("path");
 let mainWindow;
-Menu.setApplicationMenu(false);
+
+// hide menu bar on systems other than macOS
+// on macOS we have to show it to allow copy, paste and other default system actions
+if (process.platform !== 'darwin') {
+  Menu.setApplicationMenu(null);
+}
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = true;
 
